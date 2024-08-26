@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: 'https://chayee-frontend.vercel.app/',
+  origin: 'https://chayee-frontend.vercel.app',
   credentials: true
 }));
 
