@@ -5,10 +5,20 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-app.use(cors({
-  origin: 'https://chayee-frontend.vercel.app',
+const allowOrigins = ['https://chayee-frontend.vercel.app', 'http://localhost:3000'];
+
+const corsOptions = {
+  origin: (origin, callback)=>{
+    if(!origin || allowOrigins.includes(origin)){
+      callback(null,true);
+    }else{
+      callback(new Error('Nt allow by CORS'));
+    }
+  },
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
